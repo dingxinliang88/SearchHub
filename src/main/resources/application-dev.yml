@@ -20,3 +20,14 @@ spring:
 #      testWhileIdle: true                                    # 空闲时是否进行连接检查
 #      testOnBorrow: false                                    # 取出连接时是否进行连接检查
 #      testOnReturn: false                                    # 归还连接时是否进行连接检查
+knife4j:
+  config:
+    base-package: com.juzi.quickweb.controller
+    title: QuickWeb接口文档
+    description: 帮助快速构建web
+    version: 0.0.1
+    contact-name: codejuzi
+    contact-email: d1741530592@163.com
+    contact-url: codejuzi.icu
+    license: MIT
+    license-url: https://mit-license.org/

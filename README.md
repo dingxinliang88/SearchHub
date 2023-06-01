@@ -46,6 +46,30 @@
 - `application-prod.yml`：上线应用配置文件，包括数据库连接信息、日志配置等。
 - `logback.xml`：logback日志配置文件，包括日志文件记录参数配置等
 
+
+
+<h2 align='center'>🔧配置项说明</h2>
+
+完整配置项：
+
+```yaml
+knife4j:
+  config:
+  	# 核心配置
+    base-package: com.juzi.quickweb.controller
+    # 次要配置
+    title: QuickWeb接口文档
+    description: 帮助快速构建web
+    version: 0.0.1
+    contact-name: codejuzi
+    contact-email: d1741530592@163.com
+    contact-url: codejuzi.icu
+    license: MIT
+    license-url: https://mit-license.org/
+```
+
+
+
 <h2 align='center'>🧾目录结构说明</h2>
 
 ```

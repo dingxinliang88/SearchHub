@@ -41,6 +41,9 @@ public class Knife4jConfig {
     private String license = DEFAULT_VAL;
     private String licenseUrl = DEFAULT_VAL;
 
+    /**
+     * 包路径（controller层）
+     */
     private String basePackage;
 
     @Bean
