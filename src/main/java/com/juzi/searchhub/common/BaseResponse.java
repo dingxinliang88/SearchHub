@@ -1,4 +1,4 @@
-package com.juzi.quickweb.common;
+package com.juzi.searchhub.common;
 
 import lombok.Data;
 

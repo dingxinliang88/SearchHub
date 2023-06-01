@@ -1,4 +1,4 @@
-package com.juzi.quickweb.aspect;
+package com.juzi.searchhub.aspect;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +29,7 @@ public class LogAspect {
      * 切点
      * todo 修改成具体路径
      */
-    @Pointcut("execution(* com.juzi.quickweb.controller.*.*(..))")
+    @Pointcut("execution(* com.juzi.searchhub.controller.*.*(..))")
     public void pointCut() {
     }
 

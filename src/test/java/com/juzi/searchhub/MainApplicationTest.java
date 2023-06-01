@@ -1,4 +1,4 @@
-package com.juzi.quickweb;
+package com.juzi.searchhub;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import lombok.extern.slf4j.Slf4j;

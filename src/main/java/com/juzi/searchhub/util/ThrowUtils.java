@@ -1,7 +1,7 @@
-package com.juzi.quickweb.util;
+package com.juzi.searchhub.util;
 
-import com.juzi.quickweb.common.StatusCode;
-import com.juzi.quickweb.exception.BusinessException;
+import com.juzi.searchhub.common.StatusCode;
+import com.juzi.searchhub.exception.BusinessException;
 
 /**
  * 抛出异常工具类

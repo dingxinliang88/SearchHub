@@ -1,7 +1,7 @@
-package com.juzi.quickweb.util;
+package com.juzi.searchhub.util;
 
-import com.juzi.quickweb.common.BaseResponse;
-import com.juzi.quickweb.common.StatusCode;
+import com.juzi.searchhub.common.BaseResponse;
+import com.juzi.searchhub.common.StatusCode;
 
 /**
  * 返回结果生成工具类

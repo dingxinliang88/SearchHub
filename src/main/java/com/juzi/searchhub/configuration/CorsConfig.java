@@ -1,4 +1,4 @@
-package com.juzi.quickweb.configuration;
+package com.juzi.searchhub.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

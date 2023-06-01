@@ -1,4 +1,4 @@
-package com.juzi.quickweb.configuration;
+package com.juzi.searchhub.configuration;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

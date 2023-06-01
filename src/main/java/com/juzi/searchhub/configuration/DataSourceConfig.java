@@ -1,4 +1,4 @@
-package com.juzi.quickweb.configuration;
+package com.juzi.searchhub.configuration;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;

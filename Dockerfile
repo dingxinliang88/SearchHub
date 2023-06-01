@@ -13,7 +13,7 @@ RUN apt-get update && \
 FROM openjdk:11-jre-slim
 
 # Copy the jar to the production image from the builder stage.
-COPY --from=builder /app/target/quickweb-0.0.1.jar /quickweb.jar
+COPY --from=builder /app/target/searchhub-0.0.1.jar /searchhub.jar
 
 # Run the web service on container startup.
-CMD ["java","-jar","/quickweb.jar","--spring.profiles.active=prod"]
+CMD ["java","-jar","/searchhub.jar","--spring.profiles.active=prod"]

@@ -1,8 +1,8 @@
-package com.juzi.quickweb.exception;
+package com.juzi.searchhub.exception;
 
-import com.juzi.quickweb.common.BaseResponse;
-import com.juzi.quickweb.common.StatusCode;
-import com.juzi.quickweb.util.ResultUtils;
+import com.juzi.searchhub.common.BaseResponse;
+import com.juzi.searchhub.common.StatusCode;
+import com.juzi.searchhub.util.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

@@ -1,6 +1,6 @@
-package com.juzi.quickweb.exception;
+package com.juzi.searchhub.exception;
 
-import com.juzi.quickweb.common.StatusCode;
+import com.juzi.searchhub.common.StatusCode;
 
 /**
  * 自定义业务异常类
