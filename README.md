@@ -55,7 +55,7 @@
 ```yaml
 knife4j:
   config:
-  	# 核心配置
+    # 核心配置
     base-package: com.juzi.quickweb.controller
     # 次要配置
     title: QuickWeb接口文档
