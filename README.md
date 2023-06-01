@@ -1,5 +1,12 @@
+<h4 align="right"><strong>English</strong> | <a href="./README_CN.md">
+简体中文</a></h4>
+
+<p align="center">
+    <img src=http://figure.codejuzi.icu/img/quick.png width=138/>
+</p>
+
 <h1 align="center">QuickWeb</h1>
-<p align="center"><strong>构建Web应用模板，整合Knife4j接口文档，自定义错误码、全局异常处理器、全局日志记录（AOP实现）、全局异常处理器、通用返回类、Logback日志记录</strong></p>
+<p align="center"><strong>Build web application template, integrate Knife4j API documentation, customize error codes, global exception handlers, global logging (implemented using AOP), common response class and Logback logging</strong></p>
 
 <p align="center">
   <a href="https://maven.apache.org/"><img src="https://img.shields.io/badge/Maven-3.8.3-blue.svg" alt="Maven Version"></a>
@@ -10,56 +17,64 @@
 </p>
 
 
-> 这是一个基于SpringBoot的Web起始项目，你可以将这个项目作为项目初始的模板项目。
->
-> 本项目使用了MyBatis和MyBatis Plus作为ORM框架，使用Druid作为数据源，MySQL作为数据库，同时也使用了Knife4j作为API文档生成工具。
-> 除此之外，该项目还实现了自定义业务异常、全局日志记录（AOP实现）、全局异常处理器、通用返回类、Logback日志记录等功能。
+> QuickWeb is a web starting project based on SpringBoot that can be used as a template for new projects. It uses MyBatis and MyBatis Plus as the ORM framework, Druid as the data source, MySQL as the database, and Knife4j as the API document generator. Additionally, this project includes features such as custom business exceptions, global logging (implemented using AOP), global exception handling, common response class, and Logback logging.
 
-<h2 align='center'>📌技术栈</h2>
+<h2 align='center'>📌Technology Stack</h2>
 
 - java 11
-- Spring Boot 2.7.11：快速开发框架，简化了Spring应用的搭建过程。
-- MyBatis & MyBatis Plus：持久层框架，提供了许多方便的增删改查接口。
-- Druid：阿里巴巴开源的数据库连接池、监控组件。
-- MySQL：开源关系型数据库。
-- Knife4j：基于Swagger的API文档生成工具。
+- Spring Boot 2.7.11: A fast development framework that simplifies the process of setting up a Spring application.
+- MyBatis & MyBatis Plus: A persistence framework that provides many convenient interfaces for CRUD operations.
+- Druid: Alibaba's open-source database connection pool and monitoring component.
+- MySQL: Open-source relational database.
+- Knife4j: An API document generation tool based on Swagger.
 
-<h2 align='center'>💪功能</h2>
+<h2 align='center'>💪Features</h2>
 
-- 自定义业务异常：在业务出错时抛出自定义异常，并通过全局异常处理器进行捕获和处理。
-- 全局日志记录（AOP实现）：通过AOP拦截所有Controller方法，在方法执行前后记录请求和响应的相关信息。
-- 全局异常处理器：捕获全局异常并统一处理，返回友好的错误提示信息。
-- 通用返回类：封装了一些常见的响应状态码和消息，方便快速构建响应体。
-- Knife4j API文档生成：通过注解和配置生成API文档，方便开发者查看和调试接口。
+- Custom business exceptions: throw custom exceptions when business errors occur and catch and handle them through global exception handlers.
+- Global logging (implemented using AOP): Intercept all Controller methods through AOP and record relevant information about requests and responses before and after method execution.
+- Global exception handling: Capture global exceptions and handle them uniformly, returning friendly error messages.
+- Common response class: encapsulates some common response status codes and messages for quick construction of response bodies.
+- Knife4j API documentation generation: Generates API documentation through annotations and configuration, making it easy for developers to view and debug interfaces.
 
-<h2 align='center'>🏁快速开始</h2>
+<h2 align='center'>🏁Quick Start</h2>
 
-1. 安装MySQL并创建数据库。
-2. 修改`application-dev.yml`中的数据库连接信息。
-3. 运行主类`MainApplication`。
-4. 访问`http://localhost:8080/api/doc.html`查看API文档。
+1. Install MySQL and create a database.
 
-<h2 align='center'>📖配置文件说明</h2>
+2. Modify the database connection information in `application-dev.yml`.
 
-- `application.yml`：应用配置文件，包括数据库连接信息、日志配置等。
-- `application-dev.yml`：开发应用配置文件，包括数据库连接信息、日志配置等。
-- `application-prod.yml`：上线应用配置文件，包括数据库连接信息、日志配置等。
-- `logback.xml`：logback日志配置文件，包括日志文件记录参数配置等
+3. Run the main class `MainApplication`.
 
+4. Visit `http://localhost:8080/api/doc.html` to view the API documentation.
 
+5. Integrate into your own project
 
-<h2 align='center'>🔧配置项说明</h2>
+    1. Modify the project name in `logback.xml` to your own
+    
+    2. Modify the database configuration
+    
+    3. Modify knife4j configuration (see [🔧Configuration Item Description](#🔧configuration-item-description))
+    
+    4. Modify the port number and `context-path` as needed
 
-完整配置项：
+<h2 align='center'>📖Configuration File Description</h2>
+
+- `application.yml`: Application configuration file, including database connection information, log configuration, etc.
+- `application-dev.yml`: Development application configuration file, including database connection information, log configuration, etc.
+- `application-prod.yml`: Online application configuration file, including database connection information, log configuration, etc.
+- `logback.xml`: Logback configuration file, including parameters for logging file records, etc.
+
+<h2 align='center'>🔧Configuration Item Description</h2>
+
+Complete configuration items:
 
 ```yaml
 knife4j:
   config:
-    # 核心配置
+    # Core configuration
     base-package: com.juzi.quickweb.controller
-    # 次要配置
-    title: QuickWeb接口文档
-    description: 帮助快速构建web
+    # Secondary configuration
+    title: QuickWeb API Document
+    description: Helps to quickly build web applications
     version: 0.0.1
     contact-name: codejuzi
     contact-email: d1741530592@163.com
@@ -68,46 +83,44 @@ knife4j:
     license-url: https://mit-license.org/
 ```
 
-
-
-<h2 align='center'>🧾目录结构说明</h2>
+<h2 align='center'>🧾Directory Structure Description</h2>
 
 ```
 .
 ├── Dockerfile
 ├── README.md
 ├── logs
-│   └── myapp.log   
+│   └── myapp.log   
 ├── pom.xml
 └── src
     ├── main
-    │   ├── java
-    │   │   └── com
-    │   │       └── juzi
-    │   │           └── quickweb
-    │   │               ├── MainApplication.java
-    │   │               ├── aspect
-    │   │               │   └── LogAspect.java              # controller层日志记录AOP
-    │   │               ├── common
-    │   │               │   ├── BaseResponse.java           # 通用返回类
-    │   │               │   └── StatusCode.java             # 自定义状态码
-    │   │               ├── configuration
-    │   │               │   ├── CorsConfig.java             # 全局跨域配置
-    │   │               │   ├── DataSourceConfig.java       # 数据源配置
-    │   │               │   ├── Knife4jConfig.java
-    │   │               │   └── MyBatisPlusConfig.java
-    │   │               ├── controller
-    │   │               ├── exception
-    │   │               │   ├── BusinessException.java      # 自定义业务异常
-    │   │               │   └── GlobalExceptionHandler.java # 全局异常处理器
-    │   │               └── util
-    │   │                   ├── ResultUtils.java
-    │   │                   └── ThrowUtils.java
-    │   └── resources
-    │       ├── application-dev.yml
-    │       ├── application-prod.yml
-    │       ├── application.yml
-    │       └── logback.xml
+    │   ├── java
+    │   │   └── com
+    │   │       └── juzi
+    │   │           └── quickweb
+    │   │               ├── MainApplication.java
+    │   │               ├── aspect
+    │   │               │   └── LogAspect.java              # Controller layer logging AOP
+    │   │               ├── common
+    │   │               │   ├── BaseResponse.java           # Common response class
+    │   │               │   └── StatusCode.java             # Custom status codes
+    │   │               ├── configuration
+    │   │               │   ├── CorsConfig.java             # Global cross-domain configuration
+    │   │               │   ├── DataSourceConfig.java       # Data source configuration
+    │   │               │   ├── Knife4jConfig.java
+    │   │               │   └── MyBatisPlusConfig.java
+    │   │               ├── controller
+    │   │               ├── exception
+    │   │               │   ├── BusinessException.java      # Custom business exceptions
+    │   │               │   └── GlobalExceptionHandler.java # Global exception handler
+    │   │               └── util
+    │   │                   ├── ResultUtils.java
+    │   │                   └── ThrowUtils.java
+    │   └── resources
+    │       ├── application-dev.yml
+    │       ├── application-prod.yml
+    │       ├── application.yml
+    │       └── logback.xml
     └── test
         └── java
             └── com
@@ -116,6 +129,6 @@ knife4j:
                         └── MainApplicationTest.java
 ```
 
-<h2 align='center'>©️版权信息</h2>
+<h2 align='center'>©️Copyright</h2>
 
-遵循MIT开源协议。
+Open-sourced under the MIT License. 
