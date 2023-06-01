@@ -2,7 +2,7 @@
 简体中文</a></h4>
 
 <p align="center">
-    <img src=http://figure.codejuzi.icu/img/quick.png width=138/>
+    <img src=./assets/quick.png width=138  alt="quick"/>
 </p>
 
 <h1 align="center">QuickWeb</h1>
@@ -17,7 +17,10 @@
 </p>
 
 
-> QuickWeb is a web starting project based on SpringBoot that can be used as a template for new projects. It uses MyBatis and MyBatis Plus as the ORM framework, Druid as the data source, MySQL as the database, and Knife4j as the API document generator. Additionally, this project includes features such as custom business exceptions, global logging (implemented using AOP), global exception handling, common response class, and Logback logging.
+> QuickWeb is a web starting project based on SpringBoot that can be used as a template for new projects. It uses
+> MyBatis and MyBatis Plus as the ORM framework, Druid as the data source, MySQL as the database, and Knife4j as the API
+> document generator. Additionally, this project includes features such as custom business exceptions, global logging (
+> implemented using AOP), global exception handling, common response class, and Logback logging.
 
 <h2 align='center'>📌Technology Stack</h2>
 
@@ -30,11 +33,15 @@
 
 <h2 align='center'>💪Features</h2>
 
-- Custom business exceptions: throw custom exceptions when business errors occur and catch and handle them through global exception handlers.
-- Global logging (implemented using AOP): Intercept all Controller methods through AOP and record relevant information about requests and responses before and after method execution.
+- Custom business exceptions: throw custom exceptions when business errors occur and catch and handle them through
+  global exception handlers.
+- Global logging (implemented using AOP): Intercept all Controller methods through AOP and record relevant information
+  about requests and responses before and after method execution.
 - Global exception handling: Capture global exceptions and handle them uniformly, returning friendly error messages.
-- Common response class: encapsulates some common response status codes and messages for quick construction of response bodies.
-- Knife4j API documentation generation: Generates API documentation through annotations and configuration, making it easy for developers to view and debug interfaces.
+- Common response class: encapsulates some common response status codes and messages for quick construction of response
+  bodies.
+- Knife4j API documentation generation: Generates API documentation through annotations and configuration, making it
+  easy for developers to view and debug interfaces.
 
 <h2 align='center'>🏁Quick Start</h2>
 
@@ -49,18 +56,20 @@
 5. Integrate into your own project
 
     1. Modify the project name in `logback.xml` to your own
-    
+
     2. Modify the database configuration
-    
+
     3. Modify knife4j configuration (see [🔧Configuration Item Description](#🔧configuration-item-description))
-    
+
     4. Modify the port number and `context-path` as needed
 
 <h2 align='center'>📖Configuration File Description</h2>
 
 - `application.yml`: Application configuration file, including database connection information, log configuration, etc.
-- `application-dev.yml`: Development application configuration file, including database connection information, log configuration, etc.
-- `application-prod.yml`: Online application configuration file, including database connection information, log configuration, etc.
+- `application-dev.yml`: Development application configuration file, including database connection information, log
+  configuration, etc.
+- `application-prod.yml`: Online application configuration file, including database connection information, log
+  configuration, etc.
 - `logback.xml`: Logback configuration file, including parameters for logging file records, etc.
 
 <h2 align='center'>🔧Configuration Item Description</h2>

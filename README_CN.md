@@ -2,7 +2,7 @@
 <strong>简体中文</strong></a></h4>
 
 <p align="center">
-    <img src=http://figure.codejuzi.icu/img/quick.png width=138/>
+    <img src=./assets/quick.png width=138 alt="quick"/>
 </p>
 
 <h1 align="center">QuickWeb</h1>
