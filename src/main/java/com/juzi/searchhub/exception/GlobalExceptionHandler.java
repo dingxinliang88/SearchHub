@@ -2,7 +2,7 @@ package com.juzi.searchhub.exception;
 
 import com.juzi.searchhub.common.BaseResponse;
 import com.juzi.searchhub.common.StatusCode;
-import com.juzi.searchhub.util.ResultUtils;
+import com.juzi.searchhub.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

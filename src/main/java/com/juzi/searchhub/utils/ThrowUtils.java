@@ -1,4 +1,4 @@
-package com.juzi.searchhub.util;
+package com.juzi.searchhub.utils;
 
 import com.juzi.searchhub.common.StatusCode;
 import com.juzi.searchhub.exception.BusinessException;
