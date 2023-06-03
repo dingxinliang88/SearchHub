@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ArticleQueryRequest extends PageRequest implements Serializable {
+public class QueryRequest extends PageRequest implements Serializable {
 
     /**
      * 搜索关键词（标题、内容）

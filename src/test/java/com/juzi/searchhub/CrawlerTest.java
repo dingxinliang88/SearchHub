@@ -6,12 +6,19 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.juzi.searchhub.model.entity.Article;
+import com.juzi.searchhub.model.entity.Picture;
 import com.juzi.searchhub.service.ArticleService;
+import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +28,7 @@ import java.util.Map;
  *
  * @author codejuzi
  */
+@Slf4j
 @SpringBootTest
 public class CrawlerTest {
 
@@ -71,5 +79,30 @@ public class CrawlerTest {
         // 3、数据入库
         boolean saveRes = articleService.saveBatch(articleList);
         Assertions.assertTrue(saveRes);
+    }
+
+    @Test
+    void testFetchPicture() throws IOException {
+        String searchText = "小黑子";
+        int current = 1;
+        String url = String.format("https://www.bing.com/images/search?q=%s&first=%s", searchText, current);
+        Document doc = Jsoup.connect(url).get();
+        Elements imgElements = doc.select(".iuscp.isv");
+        List<Picture> pictureList = new ArrayList<>();
+        for (Element element : imgElements) {
+            // 取出图片的url
+            String imgJson = element.select(".iusc").get(0).attr("m");
+            @SuppressWarnings("unchecked")
+            Map<String, Object> imgJsonMap = JSONUtil.toBean(imgJson, Map.class);
+            String imgUrl = (String) imgJsonMap.get("murl");
+            // 取出图片的title
+            String imgTitle = element.select(".inflnk").get(0).attr("aria-label");
+
+            Picture picture = new Picture();
+            picture.setUrl(imgUrl);
+            picture.setTitle(imgTitle);
+            pictureList.add(picture);
+        }
+        System.out.println(pictureList);
     }
 }

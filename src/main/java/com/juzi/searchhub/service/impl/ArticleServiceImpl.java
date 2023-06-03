@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.juzi.searchhub.mapper.ArticleMapper;
-import com.juzi.searchhub.model.dto.ArticleQueryRequest;
+import com.juzi.searchhub.model.dto.QueryRequest;
 import com.juzi.searchhub.model.entity.Article;
 import com.juzi.searchhub.model.vo.ArticleVO;
 import com.juzi.searchhub.service.ArticleService;
@@ -29,28 +29,28 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
         implements ArticleService {
 
     @Override
-    public Page<ArticleVO> queryArticleByPage(ArticleQueryRequest articleQueryRequest) {
-        QueryWrapper<Article> queryWrapper = getQueryWrapper(articleQueryRequest);
-        long current = articleQueryRequest.getCurrent();
-        long pageSize = articleQueryRequest.getPageSize();
+    public Page<ArticleVO> queryArticleByPage(QueryRequest queryRequest) {
+        QueryWrapper<Article> queryWrapper = getQueryWrapper(queryRequest);
+        long current = queryRequest.getCurrent();
+        long pageSize = queryRequest.getPageSize();
         Page<Article> articlePage = this.page(new Page<>(current, pageSize), queryWrapper);
         return this.getArticleVOPage(articlePage);
     }
 
     @Override
-    public QueryWrapper<Article> getQueryWrapper(ArticleQueryRequest articleQueryRequest) {
+    public QueryWrapper<Article> getQueryWrapper(QueryRequest queryRequest) {
         QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
-        if (Objects.isNull(articleQueryRequest)) {
+        if (Objects.isNull(queryRequest)) {
             return queryWrapper;
         }
-        String searchText = articleQueryRequest.getSearchText();
+        String searchText = queryRequest.getSearchText();
         if (StringUtils.isNotBlank(searchText)) {
             queryWrapper.like("title", searchText)
                     .or()
                     .like("content", searchText);
         }
-        String sortField = articleQueryRequest.getSortField();
-        String sortOrder = articleQueryRequest.getSortOrder();
+        String sortField = queryRequest.getSortField();
+        String sortOrder = queryRequest.getSortOrder();
         queryWrapper.orderBy(SqlUtils.validSortField(sortField), SORT_ORDER_ASC.equals(sortOrder), sortField);
         return queryWrapper;
     }
