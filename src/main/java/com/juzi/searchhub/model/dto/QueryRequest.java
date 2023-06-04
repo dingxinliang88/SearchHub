@@ -17,4 +17,9 @@ public class QueryRequest extends PageRequest implements Serializable {
      * 搜索关键词（标题、内容）
      */
     private String searchText;
+
+    /**
+     * 搜索类型
+     */
+    private String type;
 }

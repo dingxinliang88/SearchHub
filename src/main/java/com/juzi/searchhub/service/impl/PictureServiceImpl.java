@@ -1,5 +1,6 @@
 package com.juzi.searchhub.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.juzi.searchhub.common.StatusCode;
@@ -23,12 +24,18 @@ import java.util.Map;
  */
 @Service
 public class PictureServiceImpl implements PictureService {
+
+    private static final String DEFAULT_SEARCH_TEXT = "study";
+
     @Override
     public Page<Picture> queryPictureByPage(QueryRequest queryRequest) {
 
         String searchText = queryRequest.getSearchText();
         long current = queryRequest.getCurrent();
         long pageSize = queryRequest.getPageSize();
+        if (StrUtil.isBlank(searchText)) {
+            searchText = DEFAULT_SEARCH_TEXT;
+        }
 
         String url = String.format("https://www.bing.com/images/search?q=%s&first=%s", searchText, current);
         Document doc;
