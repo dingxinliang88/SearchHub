@@ -7,6 +7,7 @@ import com.juzi.searchhub.model.dto.QueryRequest;
 import com.juzi.searchhub.model.entity.Picture;
 import com.juzi.searchhub.model.enums.SearchTypeEnums;
 import com.juzi.searchhub.model.vo.ArticleVO;
+import com.juzi.searchhub.model.vo.BiliVideoVO;
 import com.juzi.searchhub.model.vo.SearchVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,9 @@ public class SearchFacade {
 
     @Resource
     private ArticleDataSource articleDataSource;
+
+    @Resource
+    private BiliVideoDataSource biliVideoDataSource;
 
     public SearchVO doSearch(QueryRequest queryRequest) {
         String searchText = queryRequest.getSearchText();
@@ -74,15 +78,19 @@ public class SearchFacade {
                 = CompletableFuture.supplyAsync(() -> articleDataSource.doSearch(searchText, current, pageSize));
         CompletableFuture<Page<Picture>> pictureTask
                 = CompletableFuture.supplyAsync(() -> pictureDataSource.doSearch(searchText, current, pageSize));
+        CompletableFuture<Page<BiliVideoVO>> videoTask
+                = CompletableFuture.supplyAsync(() -> biliVideoDataSource.doSearch(searchText, current, pageSize));
 
-        CompletableFuture.allOf(pictureTask, articleTask).join();
+        CompletableFuture.allOf(pictureTask, articleTask, videoTask).join();
 
         try {
             Page<Picture> picturePage = pictureTask.get();
             Page<ArticleVO> articleVOPage = articleTask.get();
+            Page<BiliVideoVO> biliVideoVOPage = videoTask.get();
             SearchVO searchVO = new SearchVO();
             searchVO.setArticleVOPage(articleVOPage);
             searchVO.setPicturePage(picturePage);
+            searchVO.setBiliVideoVOPage(biliVideoVOPage);
             return searchVO;
         } catch (InterruptedException | ExecutionException e) {
             log.error("查询异常，", e);

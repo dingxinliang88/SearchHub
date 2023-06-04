@@ -16,6 +16,7 @@ public class SearchVO implements Serializable {
 
     private Page<Picture> picturePage;
     private Page<ArticleVO> articleVOPage;
+    private Page<BiliVideoVO> biliVideoVOPage;
 
     private Page<?> dataPage;
 }

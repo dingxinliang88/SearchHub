@@ -9,7 +9,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public enum SearchTypeEnums {
     ARTICLE("article", "文章"),
-    PICTURE("picture", "图片");
+    PICTURE("picture", "图片"),
+    VIDEO("video", "视频");
 
     private final String type;
 

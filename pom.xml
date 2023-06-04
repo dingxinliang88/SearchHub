@@ -25,6 +25,7 @@
         <knife4j.version>3.0.3</knife4j.version>
         <hutool.version>5.8.19</hutool.version>
         <jsoup.version>1.16.1</jsoup.version>
+        <guava-retrying.version>2.0.0</guava-retrying.version>
     </properties>
 
     <dependencies>
@@ -53,7 +54,6 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.5.3.1</version>
         </dependency>
-
 
         <!--jdbc-->
         <dependency>
@@ -111,11 +111,15 @@
             <artifactId>hutool-all</artifactId>
             <version>${hutool.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>${jsoup.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.rholder</groupId>
+            <artifactId>guava-retrying</artifactId>
+            <version>${guava-retrying.version}</version>
         </dependency>
 
     </dependencies>

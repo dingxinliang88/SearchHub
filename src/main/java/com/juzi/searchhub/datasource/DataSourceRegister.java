@@ -22,6 +22,9 @@ public class DataSourceRegister {
     @Resource
     private PictureDataSource pictureDataSource;
 
+    @Resource
+    private BiliVideoDataSource biliVideoDataSource;
+
 
     private final Map<String, DataSource<?>> DATA_SOURCE_REGISTER
             = new ConcurrentHashMap<>();
@@ -30,6 +33,7 @@ public class DataSourceRegister {
     public void init() {
         DATA_SOURCE_REGISTER.put(SearchTypeEnums.ARTICLE.getType(), articleDataSource);
         DATA_SOURCE_REGISTER.put(SearchTypeEnums.PICTURE.getType(), pictureDataSource);
+        DATA_SOURCE_REGISTER.put(SearchTypeEnums.VIDEO.getType(), biliVideoDataSource);
     }
 
     /**
