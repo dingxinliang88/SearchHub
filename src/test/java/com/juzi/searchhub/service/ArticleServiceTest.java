@@ -1,8 +1,14 @@
 package com.juzi.searchhub.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.juzi.searchhub.model.dto.QueryRequest;
 import com.juzi.searchhub.model.entity.Article;
+import com.juzi.searchhub.model.enums.SearchTypeEnums;
+import com.juzi.searchhub.model.vo.ArticleVO;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.StopWatch;
 
 import javax.annotation.Resource;
 
@@ -11,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * @author codejuzi
  */
+@Slf4j
 @SpringBootTest
 class ArticleServiceTest {
 
@@ -41,4 +48,35 @@ class ArticleServiceTest {
         System.out.println("articleId = " + article.getId());
     }
 
+    @Test
+    void queryArticleByPage() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        QueryRequest queryRequest = new QueryRequest();
+        queryRequest.setSearchText("Java");
+        queryRequest.setType(SearchTypeEnums.ARTICLE.getType());
+        Page<ArticleVO> articleVOPage = articleService.queryArticleByPage(queryRequest);
+        System.out.println("articleVOPage = " + articleVOPage);
+        stopWatch.stop();
+
+        // 使用sql查询：399ms
+        long totalTimeMillis = stopWatch.getTotalTimeMillis();
+        log.info("totalTimeMillis: {}ms", totalTimeMillis);
+    }
+
+    @Test
+    void queryArticleByPageUseRedis() {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+        QueryRequest queryRequest = new QueryRequest();
+        queryRequest.setSearchText("Java");
+        queryRequest.setType(SearchTypeEnums.ARTICLE.getType());
+        Page<ArticleVO> articleVOPage = articleService.queryArticleByPage(queryRequest);
+        System.out.println("articleVOPage = " + articleVOPage);
+        stopWatch.stop();
+
+        // 使用redis查询，内存过滤 240ms
+        long totalTimeMillis = stopWatch.getTotalTimeMillis();
+        log.info("totalTimeMillis: {}ms", totalTimeMillis);
+    }
 }

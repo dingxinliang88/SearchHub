@@ -7,6 +7,8 @@ import com.juzi.searchhub.model.entity.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.juzi.searchhub.model.vo.ArticleVO;
 
+import java.util.List;
+
 /**
  * @author codejuzi
  * @description 针对表【article(文章)】的数据库操作Service
@@ -37,4 +39,13 @@ public interface ArticleService extends IService<Article> {
      * @return article page
      */
     Page<ArticleVO> getArticleVOPage(Page<Article> articlePage);
+
+
+    /**
+     * 缓存文章
+     *
+     * @param articles   文章
+     * @param searchText 搜索关键词
+     */
+    void doCacheArticle(List<Article> articles, String searchText);
 }
