@@ -6,7 +6,7 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.juzi.searchhub.model.entity.Article;
-import com.juzi.searchhub.model.entity.Picture;
+import com.juzi.searchhub.model.vo.Picture;
 import com.juzi.searchhub.model.vo.NewsVO;
 import com.juzi.searchhub.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;

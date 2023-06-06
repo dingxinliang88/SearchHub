@@ -1,7 +1,6 @@
 package com.juzi.searchhub.model.vo;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.juzi.searchhub.model.entity.Picture;
 import lombok.Data;
 
 import java.io.Serializable;

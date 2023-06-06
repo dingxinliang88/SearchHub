@@ -2,15 +2,22 @@ package com.juzi.searchhub.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.juzi.searchhub.model.dto.QueryRequest;
+import com.juzi.searchhub.model.dto.article.ArticleEsDTO;
 import com.juzi.searchhub.model.entity.Article;
 import com.juzi.searchhub.model.enums.SearchTypeEnums;
 import com.juzi.searchhub.model.vo.ArticleVO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.SearchHit;
+import org.springframework.data.elasticsearch.core.SearchHits;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.util.StopWatch;
 
 import javax.annotation.Resource;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,6 +30,9 @@ class ArticleServiceTest {
 
     @Resource
     private ArticleService articleService;
+
+    @Resource
+    private ElasticsearchRestTemplate elasticsearchRestTemplate;
 
     @Test
     void testAddArticle() {
@@ -78,5 +88,33 @@ class ArticleServiceTest {
         // 使用redis查询，内存过滤 240ms
         long totalTimeMillis = stopWatch.getTotalTimeMillis();
         log.info("totalTimeMillis: {}ms", totalTimeMillis);
+    }
+
+    @Test
+    void queryFromES() {
+        QueryRequest queryRequest = new QueryRequest();
+        queryRequest.setCurrent(1L);
+        queryRequest.setPageSize(19L);
+        queryRequest.setSearchText("极简");
+
+        Page<ArticleVO> articleVOPage = articleService.queryFromES(queryRequest);
+        List<ArticleVO> records = articleVOPage.getRecords();
+        for (ArticleVO record : records) {
+            System.out.println(record);
+        }
+    }
+
+    @Test
+    void testTemplate() {
+        SearchHits<ArticleEsDTO> searchHits = elasticsearchRestTemplate.search(
+                new NativeSearchQueryBuilder().build(),
+                ArticleEsDTO.class);
+        if (searchHits.hasSearchHits()) {
+            List<SearchHit<ArticleEsDTO>> searchHitList = searchHits.getSearchHits();
+            for (SearchHit<ArticleEsDTO> articleEsDTOSearchHit : searchHitList) {
+                ArticleEsDTO content = articleEsDTOSearchHit.getContent();
+                System.out.println(content);
+            }
+        }
     }
 }

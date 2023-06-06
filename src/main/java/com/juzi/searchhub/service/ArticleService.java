@@ -6,6 +6,7 @@ import com.juzi.searchhub.model.dto.QueryRequest;
 import com.juzi.searchhub.model.entity.Article;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.juzi.searchhub.model.vo.ArticleVO;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQuery;
 
 import java.util.List;
 
@@ -40,7 +41,6 @@ public interface ArticleService extends IService<Article> {
      */
     Page<ArticleVO> getArticleVOPage(Page<Article> articlePage);
 
-
     /**
      * 缓存文章
      *
@@ -48,4 +48,20 @@ public interface ArticleService extends IService<Article> {
      * @param searchText 搜索关键词
      */
     void doCacheArticle(List<Article> articles, String searchText);
+
+    /**
+     * 从es中查询文章
+     *
+     * @param queryRequest 文章查询请求
+     * @return article vo page
+     */
+    Page<ArticleVO> queryFromES(QueryRequest queryRequest);
+
+    /**
+     * 得到es查询条件
+     *
+     * @param queryRequest 文章查询请求
+     * @return es查询条件封装
+     */
+    NativeSearchQuery getSearchQuery(QueryRequest queryRequest);
 }

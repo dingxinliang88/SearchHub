@@ -35,7 +35,8 @@ public class ArticleDataSource implements DataSource<ArticleVO> {
         queryRequest.setSortField(ARTICLE_SORT_FIELD);
         queryRequest.setSortOrder(SORT_ORDER_ASC);
 
-        return articleService.queryArticleByPage(queryRequest);
+//        return articleService.queryArticleByPage(queryRequest);
+        return articleService.queryFromES(queryRequest);
 
     }
 }

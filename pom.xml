@@ -83,6 +83,12 @@
             <version>${spring-data-redis.version}</version>
         </dependency>
 
+        <!--es-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+        </dependency>
+
 
         <!--knife4j-->
         <dependency>

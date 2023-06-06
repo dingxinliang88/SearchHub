@@ -1,4 +1,4 @@
-package com.juzi.searchhub.model.entity;
+package com.juzi.searchhub.model.vo;
 
 import lombok.Data;
 

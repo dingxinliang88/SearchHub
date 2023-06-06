@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.juzi.searchhub.common.StatusCode;
 import com.juzi.searchhub.exception.BusinessException;
 import com.juzi.searchhub.model.dto.QueryRequest;
-import com.juzi.searchhub.model.entity.Picture;
+import com.juzi.searchhub.model.vo.Picture;
 import com.juzi.searchhub.model.enums.SearchTypeEnums;
 import com.juzi.searchhub.model.vo.ArticleVO;
 import com.juzi.searchhub.model.vo.BiliVideoVO;
