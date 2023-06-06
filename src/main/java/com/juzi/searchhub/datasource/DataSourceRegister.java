@@ -25,6 +25,9 @@ public class DataSourceRegister {
     @Resource
     private BiliVideoDataSource biliVideoDataSource;
 
+    @Resource
+    private NewsDataSource newsDataSource;
+
 
     private final Map<String, DataSource<?>> DATA_SOURCE_REGISTER
             = new ConcurrentHashMap<>();
@@ -34,6 +37,7 @@ public class DataSourceRegister {
         DATA_SOURCE_REGISTER.put(SearchTypeEnums.ARTICLE.getType(), articleDataSource);
         DATA_SOURCE_REGISTER.put(SearchTypeEnums.PICTURE.getType(), pictureDataSource);
         DATA_SOURCE_REGISTER.put(SearchTypeEnums.VIDEO.getType(), biliVideoDataSource);
+        DATA_SOURCE_REGISTER.put(SearchTypeEnums.NEWS.getType(), newsDataSource);
     }
 
     /**
@@ -45,6 +49,5 @@ public class DataSourceRegister {
     public DataSource<?> getDataSourceByType(String type) {
         return DATA_SOURCE_REGISTER.get(type);
     }
-
 
 }

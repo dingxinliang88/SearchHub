@@ -7,6 +7,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.juzi.searchhub.model.entity.Article;
 import com.juzi.searchhub.model.entity.Picture;
+import com.juzi.searchhub.model.vo.NewsVO;
 import com.juzi.searchhub.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
@@ -22,6 +23,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.juzi.searchhub.constant.CommonConstant.ONCE_MAX_PAGE_SIZE;
 
 /**
  * 爬虫测试
@@ -104,5 +109,42 @@ public class CrawlerTest {
             pictureList.add(picture);
         }
         System.out.println(pictureList);
+    }
+
+    @Test
+    void testFetchNews() {
+        String fetchNewsUrl = "https://news.cctv.com/2019/07/gaiban/cmsdatainterface/page/news_1.jsonp?cb=news";
+        String originRes = HttpRequest.get(fetchNewsUrl).execute().body();
+        String patternStr = "^[^(]*?\\((.*?)\\)$";
+        Pattern pattern = Pattern.compile(patternStr);
+        Matcher matcher = pattern.matcher(originRes);
+        if (matcher.find()) {
+            String originJson = matcher.group(1);
+            // 解析数据
+            @SuppressWarnings("unchecked")
+            Map<String, Object> jsonMap = JSONUtil.toBean(originJson, Map.class);
+            JSONObject data = (JSONObject) jsonMap.get("data");
+            JSONArray newsArr = (JSONArray) data.get("list");
+            List<NewsVO> newsVOList = new ArrayList<>((int) ONCE_MAX_PAGE_SIZE);
+            for (Object news : newsArr) {
+                JSONObject newsObj = (JSONObject) news;
+
+                NewsVO newsVO = new NewsVO();
+                newsVO.setTitle(newsObj.getStr("title"));
+                newsVO.setUrl(newsObj.getStr("url"));
+                newsVO.setImage(newsObj.getStr("image"));
+                newsVO.setBrief(newsObj.getStr("brief"));
+                newsVO.setFocusDate(newsObj.getStr("focus_date"));
+
+                newsVOList.add(newsVO);
+
+                if (newsVOList.size() >= ONCE_MAX_PAGE_SIZE) {
+                    break;
+                }
+            }
+            System.out.println(newsVOList);
+        } else {
+            log.error("获取新闻异常，响应信息：{}", originRes);
+        }
     }
 }

@@ -37,6 +37,5 @@ public class SearchController {
 
         SearchVO searchVO = searchFacade.doSearch(queryRequest);
         return ResultUtils.success(searchVO);
-
     }
 }
