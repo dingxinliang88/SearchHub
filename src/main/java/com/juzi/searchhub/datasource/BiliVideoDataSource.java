@@ -44,11 +44,10 @@ public class BiliVideoDataSource implements DataSource<BiliVideoVO> {
     @Resource
     private Retryer<String> retryer;
 
-
     @Override
     public Page<BiliVideoVO> doSearch(String searchText, long current, long pageSize) {
         if (StrUtil.isBlank(searchText)) {
-            searchText = "study";
+            searchText = "努力";
         }
         String url = String.format(FETCH_BILI_VIDEO_URL, searchText);
         HttpCookie biliCookie = getBiliCookie();
@@ -58,7 +57,7 @@ public class BiliVideoDataSource implements DataSource<BiliVideoVO> {
                     .cookie(biliCookie)
                     .execute().body());
         } catch (ExecutionException | RetryException e) {
-            log.error("fetch bili video error, ", e);
+            log.error("获取视频重试失败, ", e);
             throw new BusinessException(StatusCode.INTERNAL_SERVER_ERROR, "获取失败");
         }
 
