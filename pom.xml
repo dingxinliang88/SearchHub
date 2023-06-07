@@ -28,7 +28,6 @@
         <hutool.version>5.8.19</hutool.version>
         <jsoup.version>1.16.1</jsoup.version>
         <guava-retrying.version>2.0.0</guava-retrying.version>
-        <spring-data-redis.version>2.7.11</spring-data-redis.version>
     </properties>
 
     <dependencies>
@@ -76,12 +75,6 @@
             <version>${mysql.version}</version>
         </dependency>
 
-        <!--redis-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-            <version>${spring-data-redis.version}</version>
-        </dependency>
 
         <!--es-->
         <dependency>

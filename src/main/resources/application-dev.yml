@@ -4,10 +4,6 @@ spring:
       matching-strategy: ant_path_matcher
   elasticsearch:
     uris: http://localhost:9200
-  redis:
-    database: 5
-    host: localhost
-    port: 6379
   datasource:
     url: jdbc:mysql://localhost:3306/searchhub              # 数据库连接URL
     username: root                                          # 数据库用户名
