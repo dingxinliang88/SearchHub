@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author codejuzi
  */
 @Data
-@Document(indexName = "article")
+@Document(indexName = "article_v1")
 public class ArticleEsDTO implements Serializable {
 
     private static final long serialVersionUID = -8702692042641812637L;

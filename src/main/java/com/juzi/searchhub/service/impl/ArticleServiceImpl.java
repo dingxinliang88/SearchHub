@@ -21,6 +21,7 @@ import org.elasticsearch.search.sort.SortBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 import org.springframework.data.elasticsearch.core.SearchHit;
 import org.springframework.data.elasticsearch.core.SearchHits;
@@ -214,6 +215,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
         String searchText = queryRequest.getSearchText();
         String sortField = queryRequest.getSortField();
         String sortOrder = queryRequest.getSortOrder();
+        long current = queryRequest.getCurrent();
+        long pageSize = queryRequest.getPageSize();
+
 
         BoolQueryBuilder boolQueryBuilder = new BoolQueryBuilder();
 
@@ -231,17 +235,20 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
         SortBuilder<?> sortBuilder = SortBuilders.fieldSort(sortField);
         sortBuilder.order(SORT_ORDER_ASC.equals(sortOrder) ? SortOrder.ASC : SortOrder.DESC);
         // 分页
-//        PageRequest pageRequest = PageRequest.of((int) current, (int) pageSize);
+        PageRequest pageRequest = PageRequest.of((int) current, (int) pageSize);
 
         // 高亮显示
         HighlightBuilder highlightBuilder = new HighlightBuilder();
         highlightBuilder.field("content").field("title")
                 .preTags("<font color='red'>").postTags("</font>");
+
+        // 搜索建议（有待实现）
+
         // 构造查询
         return new NativeSearchQueryBuilder()
                 .withQuery(boolQueryBuilder)
                 .withHighlightBuilder(highlightBuilder)
-//                .withPageable(pageRequest)
+                .withPageable(pageRequest)
                 .withSorts(sortBuilder)
                 .build();
     }

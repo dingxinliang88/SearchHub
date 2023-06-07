@@ -95,7 +95,7 @@ class ArticleServiceTest {
         QueryRequest queryRequest = new QueryRequest();
         queryRequest.setCurrent(1L);
         queryRequest.setPageSize(19L);
-        queryRequest.setSearchText("极简");
+        queryRequest.setSearchText("总结");
 
         Page<ArticleVO> articleVOPage = articleService.queryFromES(queryRequest);
         List<ArticleVO> records = articleVOPage.getRecords();
